@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcial 1 Sistema Solar</title>
+    <style>
+      html, body { margin: 0; padding: 0; overflow: hidden; }
+        #text {
+                position: absolute;
+                padding: 10px;
+                width: 100%;
+                text-align: center;
+                color: #FFFFFF;
+            }
+    </style>
+  </head>
+  <body>
+    <div id="text">PARCIAL 1 SISTEMA SOLAR<br/>
+        Tatiana Tolosa Santamaría Cód: 6000395 <br/>
+    </div>
+		<script src="js/three.js"></script>
+
+    <script>
+
+
+            // Escena
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer();
+            renderer.setClearColor(0x000000, 1.0);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            var size = 1000;
+			var arrowSize = 4;
+			var divisions = size;
+			var origin = new THREE.Vector3( 0, 0, 0 );
+			var x = new THREE.Vector3( 1, 0, 0 );
+			var y = new THREE.Vector3( 0, 1, 0 );
+		  	var z = new THREE.Vector3( 0, 0, 1 );
+			var color1 = new THREE.Color( 0xFFFFFF );
+		  	var color2 = new THREE.Color( 0x333333 );
+		  	var colorR = new THREE.Color( 0xAA0000 );
+		  	var colorG = new THREE.Color( 0x00AA00 );
+		  	var colorB = new THREE.Color( 0x0000AA );
+			var colorRd = new THREE.Color( 0xAA6666 );
+		  	var colorGd = new THREE.Color( 0x66AA66 );
+		  	var colorBd = new THREE.Color( 0x6666AA );
+            var startTime = Date.now();
+		  
+		//Crear la Grilla
+		var axesHelper1 = new THREE.AxesHelper( size/10 );
+		var axesHelper2 = new THREE.AxesHelper( size/10 );
+		var axesHelper3 = new THREE.AxesHelper( size/10 );
+		var gridHelperXY = new THREE.GridHelper( size, divisions, color1, color1);
+		var gridHelperXZ = new THREE.GridHelper( size, divisions, color2, color2 );
+		var gridHelperYZ = new THREE.GridHelper( size, divisions, color2, color2 );
+            
+        //Flechas
+        var arrowX = new THREE.ArrowHelper( x, origin, arrowSize, colorR );
+        var arrowY = new THREE.ArrowHelper( y, origin, arrowSize, colorG );
+        var arrowZ = new THREE.ArrowHelper( z, origin, arrowSize, colorB );
+			
+        //Cámara
+        camera.position.x = 45;
+        camera.position.y = 100;
+        camera.position.z = 700;
+        camera.lookAt(scene.position);
+			
+            //Geometria
+            var geometry = new THREE.SphereGeometry( 32, 32, 32 );
+
+            var geometry2 = new THREE.SphereGeometry( 8, 8, 8 );
+            var geometry3 = new THREE.SphereGeometry( 16, 16, 16 );
+            var geometry4 = new THREE.SphereGeometry( 12, 12, 12 );
+            var geometry5 = new THREE.SphereGeometry( 10, 10, 10 );
+            var geometry6 = new THREE.SphereGeometry( 28, 28, 28 );
+            var geometry7 = new THREE.SphereGeometry( 24, 24, 24 );
+            var geometry8 = new THREE.SphereGeometry( 20, 20, 20 );
+            var geometry9 = new THREE.SphereGeometry( 16, 16, 16 );
+            var geometry10 = new THREE.SphereGeometry( 6, 6, 6 );
+            var geometry11 = new THREE.SphereGeometry( 4, 4, 4 );
+
+            // Colores
+            var solC = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+            var mercurioC = new THREE.MeshBasicMaterial( {color: 0xe6efff} );
+            var venusC = new THREE.MeshBasicMaterial( {color: 0xffaa33} );
+            var tierraC = new THREE.MeshBasicMaterial( {color: 0x0ac44b} );
+            var marteC = new THREE.MeshBasicMaterial( {color: 0xd62e00} );
+            var jupiterC = new THREE.MeshBasicMaterial( {color: 0xa15300} );
+            var saturnoC = new THREE.MeshBasicMaterial( {color: 0xeded5f} );
+            var uranoC = new THREE.MeshBasicMaterial( {color: 0xcffbff} );
+            var neptunoC = new THREE.MeshBasicMaterial( {color: 0x0b65d4} );
+            var plutonC = new THREE.MeshBasicMaterial( {color: 0xb2b8bf} );
+            var lunaC = new THREE.MeshBasicMaterial( {color: 0xe0e0e0} );
+
+
+            var sol = new THREE.Mesh( geometry, solC );
+            var mercurio = new THREE.Mesh( geometry2, mercurioC );
+            var venus = new THREE.Mesh( geometry3, venusC );
+            var tierra = new THREE.Mesh( geometry4, tierraC );
+            var marte = new THREE.Mesh( geometry5, marteC );
+            var jupiter = new THREE.Mesh( geometry6, jupiterC );
+            var saturno = new THREE.Mesh( geometry7, saturnoC );
+            var urano = new THREE.Mesh( geometry8, uranoC );
+            var neptuno = new THREE.Mesh( geometry9, neptunoC );
+            var pluton = new THREE.Mesh( geometry10, plutonC );
+            var luna = new THREE.Mesh( geometry10, lunaC );
+
+            // Jerarquia
+			sol.add(mercurio);
+            sol.add (venus);
+            sol.add (tierra);
+            sol.add (marte);
+            sol.add (jupiter);
+            sol.add (saturno);
+            sol.add (urano);
+            sol.add (neptuno);
+            sol.add (pluton);
+            tierra.add (luna);
+
+			
+            scene.add(gridHelperXZ);
+	        scene.add(arrowX);	
+		    scene.add(arrowY);	
+		    scene.add(arrowZ);
+            scene.add(sol);
+
+
+            //Documento HTML
+            document.body.appendChild(renderer.domElement);
+
+            
+    
+    
+    function animate() {
+        render();
+        requestAnimationFrame(animate);
+
+    }
+
+
+    function render() {
+        var dtime= Date.now () - startTime;
+
+            mercurio.position.x = 80*Math.cos(dtime/2000);
+            mercurio.position.z = 80*Math.sin(dtime/2000);
+
+            venus.position.x = 120*Math.cos(dtime/3000);
+            venus.position.z = 120*Math.sin(dtime/3000);
+
+            tierra.position.x = 160*Math.cos(dtime/4000);
+            tierra.position.z = 160*Math.sin(dtime/4000);
+
+            marte.position.x = 200*Math.cos(dtime/5000);
+            marte.position.z = 200*Math.sin(dtime/5000);
+
+            jupiter.position.x = 240*Math.cos(dtime/6000);
+            jupiter.position.z = 240*Math.sin(dtime/6000);
+
+            saturno.position.x = 280*Math.cos(dtime/7000);
+            saturno.position.z = 280*Math.sin(dtime/7000);
+
+            urano.position.x = 320*Math.cos(dtime/8000);
+            urano.position.z = 320*Math.sin(dtime/8000);
+
+            neptuno.position.x = 360*Math.cos(dtime/9000);
+            neptuno.position.z = 360*Math.sin(dtime/9000);
+
+            pluton.position.x = 400*Math.cos(dtime/10000);
+            pluton.position.z = 400*Math.sin(dtime/10000);
+
+            luna.position.x = 40*Math.cos(dtime/1000);
+            luna.position.z = 40*Math.sin(dtime/1000);
+
+        renderer.render(scene, camera);
+    }
+    animate();
+		
+		</script>
+	</body>
+</html>

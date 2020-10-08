@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>cilindro poligonal</title>
+    <style>
+      html, body { margin: 0; padding: 0; overflow: hidden; }
+    </style>
+  </head>
+  <body>
+    <script src="js/three.js"></script>
+	<script src="js/controls/OrbitControls.js"></script>
+    <script>
+		var scene, aspect, camera, renderer, controls;
+	
+		init();
+		animate();
+	
+		function init(){
+			scene = new THREE.Scene();
+			aspect = window.innerWidth / window.innerHeight;
+			camera = new THREE.PerspectiveCamera( 45, aspect, 0.1, 1000);
+			renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+			controls = new THREE.OrbitControls( camera, renderer.domElement );			
+			
+			var size = 10;
+			var arrowSize = 1;
+			var divisions = size;
+			var origin = new THREE.Vector3( 0, 0, 0 );
+			var x = new THREE.Vector3( 1, 0, 0 );
+			var y = new THREE.Vector3( 0, 1, 0 );
+		  	var z = new THREE.Vector3( 0, 0, 1 );
+			var color1 = new THREE.Color( 0xFFFFFF );
+		  	var color2 = new THREE.Color( 0x333333 );
+		  	var colorR = new THREE.Color( 0xAA3333 );
+		  	var colorG = new THREE.Color( 0x33AA33 );
+		  	var colorB = new THREE.Color( 0x333366 );
+		  
+		  	//CREAR LAS GRILLAS PARA EL ESCENARIO
+		  	var axesHelper = new THREE.AxesHelper( size );
+		  	var gridHelperXY = new THREE.GridHelper( size, divisions, color1, color1);
+		  	var gridHelperXZ = new THREE.GridHelper( size, divisions, color2, color2 );
+		  	var gridHelperYZ = new THREE.GridHelper( size, divisions, color2, color2 );
+            
+            //ROTARLAS PARA QUE QUEDEN EN EL ESPACIO ADECUADO
+            gridHelperXY.rotateOnWorldAxis ( x, THREE.Math.degToRad(90) );
+            gridHelperXZ.rotateOnWorldAxis ( y, THREE.Math.degToRad(90) );
+            gridHelperYZ.rotateOnWorldAxis ( z, THREE.Math.degToRad(90) );
+            
+            //CREAR LAS FLECHAS QUE INDICAN LOS EJES DE COORDENADAS 3D
+            var arrowX = new THREE.ArrowHelper( x, origin, arrowSize, colorR );
+            var arrowY = new THREE.ArrowHelper( y, origin, arrowSize, colorG );
+            var arrowZ = new THREE.ArrowHelper( z, origin, arrowSize, colorB );
+			
+			//ILUMINACION
+			
+			var hemisphereLight = new THREE.HemisphereLight(0xfffafa,0x000000, .9)
+			scene.add(hemisphereLight);
+			sun = new THREE.DirectionalLight( 0xcdc1c5, 0.9);
+			sun.position.set( 20,-10,0 );
+			sun.castShadow = true;
+			scene.add(sun);
+			
+			//CREAR LAS GEOMETRÍAS
+			
+            //BASE
+            var geoTriangulo = new THREE.Geometry();
+			var geoTriangulo1 = new THREE.Geometry();
+			var geoTriangulo2 = new THREE.Geometry();
+			var geoTriangulo3 = new THREE.Geometry();
+			var geoTriangulo4 = new THREE.Geometry();
+			var geoTriangulo5 = new THREE.Geometry();
+			var geoTriangulo6 = new THREE.Geometry();
+			var geoTriangulo7 = new THREE.Geometry();
+			var geoTriangulo8 = new THREE.Geometry();
+			var geoTriangulo9 = new THREE.Geometry();
+			var geoTriangulo10 = new THREE.Geometry();
+			var geoTriangulo11 = new THREE.Geometry();
+			var geoTriangulo12 = new THREE.Geometry();
+			var geoTriangulo13 = new THREE.Geometry();
+			var geoTriangulo14 = new THREE.Geometry();
+			var geoTriangulo15 = new THREE.Geometry();
+			
+			//TAPA
+			
+			 var geoTriangulo16 = new THREE.Geometry();
+			var geoTriangulo17 = new THREE.Geometry();
+			var geoTriangulo18 = new THREE.Geometry();
+			var geoTriangulo19 = new THREE.Geometry();
+			var geoTriangulo20 = new THREE.Geometry();
+			var geoTriangulo21 = new THREE.Geometry();
+			var geoTriangulo22 = new THREE.Geometry();
+			var geoTriangulo23 = new THREE.Geometry();
+			var geoTriangulo24 = new THREE.Geometry();
+			var geoTriangulo25 = new THREE.Geometry();
+			var geoTriangulo26 = new THREE.Geometry();
+			var geoTriangulo27 = new THREE.Geometry();
+			var geoTriangulo28 = new THREE.Geometry();
+			var geoTriangulo29 = new THREE.Geometry();
+			var geoTriangulo30 = new THREE.Geometry();
+			var geoTriangulo31 = new THREE.Geometry();
+			
+			//TRONCO
+			
+			var geoTriangulo32 = new THREE.Geometry();
+			var geoTriangulo33 = new THREE.Geometry();
+			var geoTriangulo34 = new THREE.Geometry();
+			var geoTriangulo35 = new THREE.Geometry();
+			var geoTriangulo36 = new THREE.Geometry();
+			var geoTriangulo37 = new THREE.Geometry();
+			var geoTriangulo38 = new THREE.Geometry();
+			var geoTriangulo39 = new THREE.Geometry();
+			var geoTriangulo40 = new THREE.Geometry();
+			var geoTriangulo41 = new THREE.Geometry();
+			var geoTriangulo42 = new THREE.Geometry();
+			var geoTriangulo43 = new THREE.Geometry();
+			var geoTriangulo44 = new THREE.Geometry();
+			var geoTriangulo45 = new THREE.Geometry();
+			var geoTriangulo46 = new THREE.Geometry();
+			var geoTriangulo47 = new THREE.Geometry();
+			var geoTriangulo48 = new THREE.Geometry();
+			var geoTriangulo49 = new THREE.Geometry();
+			var geoTriangulo50 = new THREE.Geometry();
+			var geoTriangulo51 = new THREE.Geometry();
+			var geoTriangulo52 = new THREE.Geometry();
+			var geoTriangulo53 = new THREE.Geometry();
+			var geoTriangulo54 = new THREE.Geometry();
+			var geoTriangulo55 = new THREE.Geometry();
+			var geoTriangulo56 = new THREE.Geometry();
+			var geoTriangulo57 = new THREE.Geometry();
+			var geoTriangulo58 = new THREE.Geometry();
+			var geoTriangulo59 = new THREE.Geometry();
+			var geoTriangulo60 = new THREE.Geometry();
+			var geoTriangulo61 = new THREE.Geometry();
+			var geoTriangulo62 = new THREE.Geometry();
+			var geoTriangulo63 = new THREE.Geometry();
+			
+			//VERTICES DE LA BASE
+			var v0 = new THREE.Vector3( 0.0, 0.0, 0.0);
+			var v1 = new THREE.Vector3( 2.5,0.0, 6.5);
+			var v2 = new THREE.Vector3(0.0,0.0, 7.0);
+			geoTriangulo.vertices.push( v0 );
+			geoTriangulo.vertices.push( v1 );
+			geoTriangulo.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, 0.0);
+			var v1 = new THREE.Vector3( 5.0,0.0, 5.0);
+			var v2 = new THREE.Vector3(2.5,0.0, 6.5);
+			geoTriangulo1.vertices.push( v0 );
+			geoTriangulo1.vertices.push( v1 );
+			geoTriangulo1.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, 0.0);
+			var v1 = new THREE.Vector3( 6.5,0.0, 2.5);
+			var v2 = new THREE.Vector3(5.0,0.0, 5.0);
+			geoTriangulo2.vertices.push( v0 );
+			geoTriangulo2.vertices.push( v1 );
+			geoTriangulo2.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, 0.0);
+			var v1 = new THREE.Vector3( 7.0,0.0, 0.0);
+			var v2 = new THREE.Vector3(6.5,0.0, 2.5);
+			geoTriangulo3.vertices.push( v0 );
+			geoTriangulo3.vertices.push( v1 );
+			geoTriangulo3.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, 0.0);
+			var v1 = new THREE.Vector3( 6.5,0.0,-2.5);
+			var v2 = new THREE.Vector3(7.0,0.0, 0.0);
+			geoTriangulo4.vertices.push( v0 );
+			geoTriangulo4.vertices.push( v1 );
+			geoTriangulo4.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, 0.0);
+			var v1 = new THREE.Vector3( 5.0,0.0, -5.0);
+			var v2 = new THREE.Vector3(6.5,0.0, -2.5);
+			geoTriangulo5.vertices.push( v0 );
+			geoTriangulo5.vertices.push( v1 );
+			geoTriangulo5.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, 0.0);
+			var v1 = new THREE.Vector3( 2.5,0.0, -6.5);
+			var v2 = new THREE.Vector3(5.0,0.0, -5.0);
+			geoTriangulo6.vertices.push( v0 );
+			geoTriangulo6.vertices.push( v1 );
+			geoTriangulo6.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, 0.0);
+			var v1 = new THREE.Vector3( 0.0,0.0, -7.0);
+			var v2 = new THREE.Vector3(2.5,0.0, -6.5);
+			geoTriangulo7.vertices.push( v0 );
+			geoTriangulo7.vertices.push( v1 );
+			geoTriangulo7.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, 0.0);
+			var v1 = new THREE.Vector3( -2.5,0.0, -6.5);
+			var v2 = new THREE.Vector3(0.0,0.0, -7.0);
+			geoTriangulo8.vertices.push( v0 );
+			geoTriangulo8.vertices.push( v1 );
+			geoTriangulo8.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, 0.0);
+			var v1 = new THREE.Vector3( -5.0,0.0, -5.0);
+			var v2 = new THREE.Vector3(-2.5,0.0, -6.5);
+			geoTriangulo9.vertices.push( v0 );
+			geoTriangulo9.vertices.push( v1 );
+			geoTriangulo9.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, 0.0);
+			var v1 = new THREE.Vector3( -6.5,0.0, -2.5);
+			var v2 = new THREE.Vector3(-5.0,0.0, -5.0);
+			geoTriangulo10.vertices.push( v0 );
+			geoTriangulo10.vertices.push( v1 );
+			geoTriangulo10.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, 0.0);
+			var v1 = new THREE.Vector3( -7.0,0.0,0.0);
+			var v2 = new THREE.Vector3(-6.5,0.0, -2.5);
+			geoTriangulo11.vertices.push( v0 );
+			geoTriangulo11.vertices.push( v1 );
+			geoTriangulo11.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, 0.0);
+			var v1 = new THREE.Vector3( -6.5,0.0, 2.5);
+			var v2 = new THREE.Vector3(-7.0,0.0, 0.0);
+			geoTriangulo12.vertices.push( v0 );
+			geoTriangulo12.vertices.push( v1 );
+			geoTriangulo12.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, 0.0);
+			var v1 = new THREE.Vector3( -5.0,0.0, 5.0);
+			var v2 = new THREE.Vector3(-6.5,0.0, 2.5);
+			geoTriangulo13.vertices.push( v0 );
+			geoTriangulo13.vertices.push( v1 );
+			geoTriangulo13.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, 0.0);
+			var v1 = new THREE.Vector3( -2.5,0.0, 6.5);
+			var v2 = new THREE.Vector3(-5.0,0.0, 5.0);
+			geoTriangulo14.vertices.push( v0 );
+			geoTriangulo14.vertices.push( v1 );
+			geoTriangulo14.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, 0.0);
+			var v1 = new THREE.Vector3( 0.0,0.0, 7.0);
+			var v2 = new THREE.Vector3(-2.5,0.0, 6.5);
+			geoTriangulo15.vertices.push( v0 );
+			geoTriangulo15.vertices.push( v1 );
+			geoTriangulo15.vertices.push( v2 );
+			
+			//VERTICES DE LA TAPA
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 0.0);
+			var v1 = new THREE.Vector3( 0.0,10.0, 7.0);
+			var v2 = new THREE.Vector3(2.5,10.0, 6.5);
+			geoTriangulo16.vertices.push( v0 );
+			geoTriangulo16.vertices.push( v1 );
+			geoTriangulo16.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 0.0);
+			var v1 = new THREE.Vector3( 2.5,10.0, 6.5);
+			var v2 = new THREE.Vector3(5.0,10.0, 5.0);
+			geoTriangulo17.vertices.push( v0 );
+			geoTriangulo17.vertices.push( v1 );
+			geoTriangulo17.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 0.0);
+			var v1 = new THREE.Vector3( 5.0,10.0, 5.0);
+			var v2 = new THREE.Vector3(6.5,10.0, 2.5);
+			geoTriangulo18.vertices.push( v0 );
+			geoTriangulo18.vertices.push( v1 );
+			geoTriangulo18.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 0.0);
+			var v1 = new THREE.Vector3( 6.5,10.0, 2.5);
+			var v2 = new THREE.Vector3(7.0,10.0, 0.0);
+			geoTriangulo19.vertices.push( v0 );
+			geoTriangulo19.vertices.push( v1 );
+			geoTriangulo19.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 0.0);
+			var v1 = new THREE.Vector3( 7.0,10.0,0.0);
+			var v2 = new THREE.Vector3(6.5,10.0, -2.5);
+			geoTriangulo20.vertices.push( v0 );
+			geoTriangulo20.vertices.push( v1 );
+			geoTriangulo20.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 0.0);
+			var v1 = new THREE.Vector3( 6.5,10.0, -2.5);
+			var v2 = new THREE.Vector3(5.0,10.0, -5.0);
+			geoTriangulo21.vertices.push( v0 );
+			geoTriangulo21.vertices.push( v1 );
+			geoTriangulo21.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 0.0);
+			var v1 = new THREE.Vector3( 5.0,10.0, -5.0);
+			var v2 = new THREE.Vector3(2.5,10.0, -6.5);
+			geoTriangulo22.vertices.push( v0 );
+			geoTriangulo22.vertices.push( v1 );
+			geoTriangulo22.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 0.0);
+			var v1 = new THREE.Vector3( 2.5,10.0, -6.5);
+			var v2 = new THREE.Vector3(0.0,10.0, -7.0);
+			geoTriangulo23.vertices.push( v0 );
+			geoTriangulo23.vertices.push( v1 );
+			geoTriangulo23.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 0.0);
+			var v1 = new THREE.Vector3( 0.0,10.0, -7.0);
+			var v2 = new THREE.Vector3(-2.5,10.0, -6.5);
+			geoTriangulo24.vertices.push( v0 );
+			geoTriangulo24.vertices.push( v1 );
+			geoTriangulo24.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 0.0);
+			var v1 = new THREE.Vector3( -2.5,10.0, -6.5);
+			var v2 = new THREE.Vector3(-5.0,10.0, -5.0);
+			geoTriangulo25.vertices.push( v0 );
+			geoTriangulo25.vertices.push( v1 );
+			geoTriangulo25.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 0.0);
+			var v1 = new THREE.Vector3( -5.0,10.0, -5.0);
+			var v2 = new THREE.Vector3(-6.5,10.0, -2.5);
+			geoTriangulo26.vertices.push( v0 );
+			geoTriangulo26.vertices.push( v1 );
+			geoTriangulo26.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 0.0);
+			var v1 = new THREE.Vector3( -6.5,10.0,0-2.5);
+			var v2 = new THREE.Vector3(-7.0,10.0, 0.0);
+			geoTriangulo27.vertices.push( v0 );
+			geoTriangulo27.vertices.push( v1 );
+			geoTriangulo27.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 0.0);
+			var v1 = new THREE.Vector3( -7.0,10.0, 0.0);
+			var v2 = new THREE.Vector3(-6.5,10.0, 2.5);
+			geoTriangulo28.vertices.push( v0 );
+			geoTriangulo28.vertices.push( v1 );
+			geoTriangulo28.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 0.0);
+			var v1 = new THREE.Vector3( -6.5,10.0, 2.5);
+			var v2 = new THREE.Vector3(-5.0,10.0, 5.0);
+			geoTriangulo29.vertices.push( v0 );
+			geoTriangulo29.vertices.push( v1 );
+			geoTriangulo29.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 0.0);
+			var v1 = new THREE.Vector3( -5.0,10.0, 5.0);
+			var v2 = new THREE.Vector3(-2.5,10.0, 6.5);
+			geoTriangulo30.vertices.push( v0 );
+			geoTriangulo30.vertices.push( v1 );
+			geoTriangulo30.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 0.0);
+			var v1 = new THREE.Vector3( -2.5,10.0, 6.5);
+			var v2 = new THREE.Vector3(0.0,10.0, 7.0);
+			geoTriangulo31.vertices.push( v0 );
+			geoTriangulo31.vertices.push( v1 );
+			geoTriangulo31.vertices.push( v2 );
+			
+			//VERTICES DEL TRONCO
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, 7.0); //INFERIOR
+			var v1 = new THREE.Vector3( 2.5,0.0, 6.5);
+			var v2 = new THREE.Vector3(2.5,10.0, 6.5);
+			geoTriangulo32.vertices.push( v0 );
+			geoTriangulo32.vertices.push( v1 );
+			geoTriangulo32.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 2.5, 10.0, 6.5); //SUPERIOR
+			var v1 = new THREE.Vector3( 0.0,10.0, 7.0);
+			var v2 = new THREE.Vector3(0.0,0.0, 7.0);
+			geoTriangulo33.vertices.push( v0 );
+			geoTriangulo33.vertices.push( v1 );
+			geoTriangulo33.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 2.5, 0.0, 6.5); //INFERIOR
+			var v1 = new THREE.Vector3( 5.0,0.0, 5.0);
+			var v2 = new THREE.Vector3(5.0,10.0, 5.0);
+			geoTriangulo34.vertices.push( v0 );
+			geoTriangulo34.vertices.push( v1 );
+			geoTriangulo34.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 5.0, 10.0, 5.0); //SUPERIOR
+			var v1 = new THREE.Vector3( 2.5,10.0, 6.5);
+			var v2 = new THREE.Vector3(2.5,0.0, 6.5);
+			geoTriangulo35.vertices.push( v0 );
+			geoTriangulo35.vertices.push( v1 );
+			geoTriangulo35.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 5.0, 0.0, 5.0); //INFERIOR
+			var v1 = new THREE.Vector3( 6.5,0.0, 2.5);
+			var v2 = new THREE.Vector3(6.5,10.0, 2.5);
+			geoTriangulo36.vertices.push( v0 );
+			geoTriangulo36.vertices.push( v1 );
+			geoTriangulo36.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 6.5, 10.0, 2.5); //SUPERIOR
+			var v1 = new THREE.Vector3( 5.0,10.0, 5.0);
+			var v2 = new THREE.Vector3(5.0,0.0, 5.0);
+			geoTriangulo37.vertices.push( v0 );
+			geoTriangulo37.vertices.push( v1 );
+			geoTriangulo37.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 6.5, 0.0, 2.5); //INFERIOR
+			var v1 = new THREE.Vector3( 7.0,0.0, 0.0);
+			var v2 = new THREE.Vector3(7.0,10.0, 0.0);
+			geoTriangulo38.vertices.push( v0 );
+			geoTriangulo38.vertices.push( v1 );
+			geoTriangulo38.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 7.0, 10.0, 0.0); //SUPERIOR
+			var v1 = new THREE.Vector3( 6.5,10.0, 2.5);
+			var v2 = new THREE.Vector3(6.5,0.0, 2.5);
+			geoTriangulo39.vertices.push( v0 );
+			geoTriangulo39.vertices.push( v1 );
+			geoTriangulo39.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 7.0, 0.0, 0.0);// INFERIOR
+			var v1 = new THREE.Vector3( 6.5,0.0, -2.5);
+			var v2 = new THREE.Vector3(6.5,10.0, -2.5);
+			geoTriangulo40.vertices.push( v0 );
+			geoTriangulo40.vertices.push( v1 );
+			geoTriangulo40.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 6.5, 10.0, -2.5); //SUPERIOR
+			var v1 = new THREE.Vector3( 7.0,10.0, 0.0);
+			var v2 = new THREE.Vector3(7.0,0.0, 0.0);
+			geoTriangulo41.vertices.push( v0 );
+			geoTriangulo41.vertices.push( v1 );
+			geoTriangulo41.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 6.5, 0.0, -2.5); //INFERIOR
+			var v1 = new THREE.Vector3( 5.0,0.0, -5.0);
+			var v2 = new THREE.Vector3(5.0,10.0, -5.0);
+			geoTriangulo42.vertices.push( v0 );
+			geoTriangulo42.vertices.push( v1 );
+			geoTriangulo42.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 5.0, 10.0, -5.0); //SUPERIOR
+			var v1 = new THREE.Vector3( 6.5,10.0, -2.5);
+			var v2 = new THREE.Vector3(6.5,0.0, -2.5);
+			geoTriangulo43.vertices.push( v0 );
+			geoTriangulo43.vertices.push( v1 );
+			geoTriangulo43.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 5.0, 0.0, -5.0);//INFERIOR
+			var v1 = new THREE.Vector3( 2.5,0.0, -6.5);
+			var v2 = new THREE.Vector3(2.5,10.0, -6.5);
+			geoTriangulo44.vertices.push( v0 );
+			geoTriangulo44.vertices.push( v1 );
+			geoTriangulo44.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 2.5, 10.0, -6.5);//SUPERIOR
+			var v1 = new THREE.Vector3( 5.0,10.0, -5.0);
+			var v2 = new THREE.Vector3(5.0,0.0, -5.0);
+			geoTriangulo45.vertices.push( v0 );
+			geoTriangulo45.vertices.push( v1 );
+			geoTriangulo45.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 2.5, 0.0, -6.5); //INFERIOR
+			var v1 = new THREE.Vector3( 0.0,0.0, -7.0);
+			var v2 = new THREE.Vector3(0.0,10.0, -7.0);
+			geoTriangulo46.vertices.push( v0 );
+			geoTriangulo46.vertices.push( v1 );
+			geoTriangulo46.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, -7.0);//SUPERIOR
+			var v1 = new THREE.Vector3( 2.5,10.0, -6.5);
+			var v2 = new THREE.Vector3(2.5,0.0, -6.5);
+			geoTriangulo47.vertices.push( v0 );
+			geoTriangulo47.vertices.push( v1 );
+			geoTriangulo47.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 0.0, -7.0);//INFERIOR
+			var v1 = new THREE.Vector3( -2.5,0.0, -6.5);
+			var v2 = new THREE.Vector3(-2.5,10.0, -6.5);
+			geoTriangulo48.vertices.push( v0 );
+			geoTriangulo48.vertices.push( v1 );
+			geoTriangulo48.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( -2.5, 10.0, -6.5);//SUPERIOR
+			var v1 = new THREE.Vector3( 0.0,10.0, -7.0);
+			var v2 = new THREE.Vector3(0.0,0.0, -7.0);
+			geoTriangulo49.vertices.push( v0 );
+			geoTriangulo49.vertices.push( v1 );
+			geoTriangulo49.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( -2.5, 0.0, -6.5);//INFERIOR
+			var v1 = new THREE.Vector3( -5.0,0.0, -5.0);
+			var v2 = new THREE.Vector3(-5.0,10.0, -5.0);
+			geoTriangulo50.vertices.push( v0 );
+			geoTriangulo50.vertices.push( v1 );
+			geoTriangulo50.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( -5.0, 10.0, -5.0);//SUPERIOR
+			var v1 = new THREE.Vector3( -2.5,10.0, -6.5);
+			var v2 = new THREE.Vector3(-2.5,0.0, -6.5);
+			geoTriangulo51.vertices.push( v0 );
+			geoTriangulo51.vertices.push( v1 );
+			geoTriangulo51.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( -5.0, 0.0, -5.0);//INFERIOR
+			var v1 = new THREE.Vector3( -6.5,0.0, -2.5);
+			var v2 = new THREE.Vector3(-6.5,10.0, -2.5);
+			geoTriangulo52.vertices.push( v0 );
+			geoTriangulo52.vertices.push( v1 );
+			geoTriangulo52.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( -6.5, 10.0, -2.5);//SUPERIOR
+			var v1 = new THREE.Vector3( -5.0,10.0, -5.0);
+			var v2 = new THREE.Vector3(-5.0,0.0, -5.0);
+			geoTriangulo53.vertices.push( v0 );
+			geoTriangulo53.vertices.push( v1 );
+			geoTriangulo53.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( -6.5, 0.0, -2.5);//INFERIOR
+			var v1 = new THREE.Vector3( -7.0,0.0, 0.0);
+			var v2 = new THREE.Vector3(-7.0,10.0, 0.0);
+			geoTriangulo54.vertices.push( v0 );
+			geoTriangulo54.vertices.push( v1 );
+			geoTriangulo54.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( -7.0, 10.0, 0.0);//SUPERIOR
+			var v1 = new THREE.Vector3( -6.5,10.0, -2.5);
+			var v2 = new THREE.Vector3(-6.5,0.0, -2.5);
+			geoTriangulo55.vertices.push( v0 );
+			geoTriangulo55.vertices.push( v1 );
+			geoTriangulo55.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( -7.0, 0.0, 0.0);//INFERIOR
+			var v1 = new THREE.Vector3( -6.5,0.0, 2.5);
+			var v2 = new THREE.Vector3(-6.5,10.0, 2.5);
+			geoTriangulo56.vertices.push( v0 );
+			geoTriangulo56.vertices.push( v1 );
+			geoTriangulo56.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( -6.5, 10.0, 2.5);//SUPERIOR
+			var v1 = new THREE.Vector3( -7.0,10.0, 0.0);
+			var v2 = new THREE.Vector3(-7.0,0.0, 0.0);
+			geoTriangulo57.vertices.push( v0 );
+			geoTriangulo57.vertices.push( v1 );
+			geoTriangulo57.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( -6.5, 0.0, 2.5);//INFERIOR
+			var v1 = new THREE.Vector3( -5.0,0.0, 5.0);
+			var v2 = new THREE.Vector3(-5.0,10.0, 5.0);
+			geoTriangulo58.vertices.push( v0 );
+			geoTriangulo58.vertices.push( v1 );
+			geoTriangulo58.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( -5.0, 10.0, 5.0);//SUPERIOR
+			var v1 = new THREE.Vector3( -6.5,10.0, 2.5);
+			var v2 = new THREE.Vector3(-6.5,0.0, 2.5);
+			geoTriangulo59.vertices.push( v0 );
+			geoTriangulo59.vertices.push( v1 );
+			geoTriangulo59.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( -5.0, 0.0, 5.0);//INFERIOR
+			var v1 = new THREE.Vector3( -2.5,0.0, 6.5);
+			var v2 = new THREE.Vector3(-2.5,10.0, 6.5);
+			geoTriangulo60.vertices.push( v0 );
+			geoTriangulo60.vertices.push( v1 );
+			geoTriangulo60.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( -2.5, 10.0, 6.5);//SUPERIOR
+			var v1 = new THREE.Vector3( -5.0,10.0, 5.0);
+			var v2 = new THREE.Vector3(-5.0,0.0, 5.0);
+			geoTriangulo61.vertices.push( v0 );
+			geoTriangulo61.vertices.push( v1 );
+			geoTriangulo61.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( -2.5, 0.0, 6.5); //INFERIOR
+			var v1 = new THREE.Vector3( 0.0,0.0, 7.0);
+			var v2 = new THREE.Vector3(0.0,10.0, 7.0);
+			geoTriangulo62.vertices.push( v0 );
+			geoTriangulo62.vertices.push( v1 );
+			geoTriangulo62.vertices.push( v2 );
+			
+			var v0 = new THREE.Vector3( 0.0, 10.0, 7.0);//SUPERIOR
+			var v1 = new THREE.Vector3( -2.5,10.0, 6.5);
+			var v2 = new THREE.Vector3(-2.5,0.0, 6.5);
+			geoTriangulo63.vertices.push( v0 );
+			geoTriangulo63.vertices.push( v1 );
+			geoTriangulo63.vertices.push( v2 );
+			
+			//CARAS DE LA BASE
+			
+			geoTriangulo.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo.computeFaceNormals();
+			
+			geoTriangulo1.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo1.computeFaceNormals();
+			
+			geoTriangulo2.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo2.computeFaceNormals();
+			
+			geoTriangulo3.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo3.computeFaceNormals();
+			
+			geoTriangulo4.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo4.computeFaceNormals();
+			
+			geoTriangulo5.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo5.computeFaceNormals();
+			
+			geoTriangulo6.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo6.computeFaceNormals();
+			
+			geoTriangulo7.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo7.computeFaceNormals();
+			
+			geoTriangulo8.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo8.computeFaceNormals();
+			
+			geoTriangulo9.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo9.computeFaceNormals();
+			
+			geoTriangulo10.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo10.computeFaceNormals();
+			
+			geoTriangulo11.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo11.computeFaceNormals();
+			
+			geoTriangulo12.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo12.computeFaceNormals();
+			
+			geoTriangulo13.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo13.computeFaceNormals();
+			
+			geoTriangulo14.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo14.computeFaceNormals();
+			
+			geoTriangulo15.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo15.computeFaceNormals();
+			
+			//CARAS DE LA TAPA
+			
+			geoTriangulo16.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo16.computeFaceNormals();
+			
+			geoTriangulo17.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo17.computeFaceNormals();
+			
+			geoTriangulo18.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo18.computeFaceNormals();
+			
+			geoTriangulo19.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo19.computeFaceNormals();
+			
+			geoTriangulo20.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo20.computeFaceNormals();
+			
+			geoTriangulo21.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo21.computeFaceNormals();
+			
+			geoTriangulo22.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo22.computeFaceNormals();
+			
+			geoTriangulo23.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo23.computeFaceNormals();
+			
+			geoTriangulo24.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo24.computeFaceNormals();
+			
+			geoTriangulo25.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo25.computeFaceNormals();
+			
+			geoTriangulo26.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo26.computeFaceNormals();
+			
+			geoTriangulo27.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo27.computeFaceNormals();
+			
+			geoTriangulo28.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo28.computeFaceNormals();
+			
+			geoTriangulo29.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo29.computeFaceNormals();
+			
+			geoTriangulo30.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo30.computeFaceNormals();
+			
+			geoTriangulo31.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo31.computeFaceNormals();
+			
+			//CARAS DEL TRONCO
+			
+			geoTriangulo32.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo32.computeFaceNormals();
+			geoTriangulo33.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo33.computeFaceNormals();
+			
+			geoTriangulo34.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo34.computeFaceNormals();
+			geoTriangulo35.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo35.computeFaceNormals();
+			
+			geoTriangulo36.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo36.computeFaceNormals();
+			geoTriangulo37.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo37.computeFaceNormals();
+			
+			geoTriangulo38.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo38.computeFaceNormals();
+			geoTriangulo39.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo39.computeFaceNormals();
+			
+			geoTriangulo40.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo40.computeFaceNormals();
+			geoTriangulo41.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo41.computeFaceNormals();
+			
+			geoTriangulo42.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo42.computeFaceNormals();
+			geoTriangulo43.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo43.computeFaceNormals();
+			
+			geoTriangulo44.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo44.computeFaceNormals();
+			geoTriangulo45.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo45.computeFaceNormals();
+			
+			geoTriangulo46.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo46.computeFaceNormals();
+			geoTriangulo47.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo47.computeFaceNormals();
+			
+			geoTriangulo48.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo48.computeFaceNormals();
+			geoTriangulo49.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo49.computeFaceNormals();
+			
+			geoTriangulo50.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo50.computeFaceNormals();
+			geoTriangulo51.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo51.computeFaceNormals();
+			
+			geoTriangulo52.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo52.computeFaceNormals();
+			geoTriangulo53.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo53.computeFaceNormals();
+			
+			geoTriangulo54.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo54.computeFaceNormals();
+			geoTriangulo55.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo55.computeFaceNormals();
+			
+			geoTriangulo56.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo56.computeFaceNormals();
+			geoTriangulo57.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo57.computeFaceNormals();
+			
+			geoTriangulo58.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo58.computeFaceNormals();
+			geoTriangulo59.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo59.computeFaceNormals();
+			
+			geoTriangulo60.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo60.computeFaceNormals();
+			geoTriangulo61.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo61.computeFaceNormals();
+			
+			geoTriangulo62.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo62.computeFaceNormals();
+			geoTriangulo63.faces.push( new THREE.Face3(0,1,2) );
+			geoTriangulo63.computeFaceNormals();
+			
+			//MATERIAL Y CREACIÓN DEL OBJETO
+			var matPlano = new THREE.MeshLambertMaterial( { color:'blue' } );
+			var matPlano1 = new THREE.MeshLambertMaterial( { color:'red' } );
+			var matPlano2 = new THREE.MeshLambertMaterial( { color:'green' } );
+			
+			//CREAR LOS OBJETOS
+			
+			//INVOCACION DE LA BASE
+			triangulo = new THREE.Mesh( geoTriangulo, matPlano );
+			triangulo1 = new THREE.Mesh( geoTriangulo1, matPlano );
+			triangulo2 = new THREE.Mesh( geoTriangulo2, matPlano );
+			triangulo3 = new THREE.Mesh( geoTriangulo3, matPlano );
+			triangulo4 = new THREE.Mesh( geoTriangulo4, matPlano );
+			triangulo5 = new THREE.Mesh( geoTriangulo5, matPlano );
+			triangulo6 = new THREE.Mesh( geoTriangulo6, matPlano );
+			triangulo7 = new THREE.Mesh( geoTriangulo7, matPlano );
+			triangulo8 = new THREE.Mesh( geoTriangulo8, matPlano );
+			triangulo9 = new THREE.Mesh( geoTriangulo9, matPlano );
+			triangulo10 = new THREE.Mesh( geoTriangulo10, matPlano );
+			triangulo11 = new THREE.Mesh( geoTriangulo11, matPlano );
+			triangulo12 = new THREE.Mesh( geoTriangulo12, matPlano );
+			triangulo13 = new THREE.Mesh( geoTriangulo13, matPlano );
+			triangulo14 = new THREE.Mesh( geoTriangulo14, matPlano );
+			triangulo15 = new THREE.Mesh( geoTriangulo15, matPlano );
+			
+			//INVOCACION DE LA TAPA
+			triangulo16 = new THREE.Mesh( geoTriangulo16, matPlano1 );
+			triangulo17 = new THREE.Mesh( geoTriangulo17, matPlano1 );
+			triangulo18 = new THREE.Mesh( geoTriangulo18, matPlano1 );
+			triangulo19 = new THREE.Mesh( geoTriangulo19, matPlano1 );
+			triangulo20 = new THREE.Mesh( geoTriangulo20, matPlano1 );
+			triangulo21 = new THREE.Mesh( geoTriangulo21, matPlano1 );
+			triangulo22 = new THREE.Mesh( geoTriangulo22, matPlano1 );
+			triangulo23 = new THREE.Mesh( geoTriangulo23, matPlano1 );
+			triangulo24 = new THREE.Mesh( geoTriangulo24, matPlano1 );
+			triangulo25 = new THREE.Mesh( geoTriangulo25, matPlano1 );
+			triangulo26 = new THREE.Mesh( geoTriangulo26, matPlano1 );
+			triangulo27 = new THREE.Mesh( geoTriangulo27, matPlano1 );
+			triangulo28 = new THREE.Mesh( geoTriangulo28, matPlano1 );
+			triangulo29 = new THREE.Mesh( geoTriangulo29, matPlano1 );
+			triangulo30 = new THREE.Mesh( geoTriangulo30, matPlano1 );
+			triangulo31 = new THREE.Mesh( geoTriangulo31, matPlano1 );
+			
+			//INVOCACION DEL TRONCO
+			
+			triangulo32 = new THREE.Mesh( geoTriangulo32, matPlano2 );
+			triangulo33 = new THREE.Mesh( geoTriangulo33, matPlano2 );
+			triangulo34 = new THREE.Mesh( geoTriangulo34, matPlano2 );
+			triangulo35 = new THREE.Mesh( geoTriangulo35, matPlano2 );
+			triangulo36 = new THREE.Mesh( geoTriangulo36, matPlano2 );
+			triangulo37 = new THREE.Mesh( geoTriangulo37, matPlano2 );
+			triangulo38 = new THREE.Mesh( geoTriangulo38, matPlano2 );
+			triangulo39 = new THREE.Mesh( geoTriangulo39, matPlano2 );
+			triangulo40 = new THREE.Mesh( geoTriangulo40, matPlano2 );
+			triangulo41 = new THREE.Mesh( geoTriangulo41, matPlano2 );
+			triangulo42 = new THREE.Mesh( geoTriangulo42, matPlano2 );
+			triangulo43 = new THREE.Mesh( geoTriangulo43, matPlano2 );
+			triangulo44 = new THREE.Mesh( geoTriangulo44, matPlano2 );
+			triangulo45 = new THREE.Mesh( geoTriangulo45, matPlano2 );
+			triangulo46 = new THREE.Mesh( geoTriangulo46, matPlano2 );
+			triangulo47 = new THREE.Mesh( geoTriangulo47, matPlano2 );
+			triangulo48 = new THREE.Mesh( geoTriangulo48, matPlano2 );
+			triangulo49 = new THREE.Mesh( geoTriangulo49, matPlano2 );
+			triangulo50 = new THREE.Mesh( geoTriangulo50, matPlano2 );
+			triangulo51 = new THREE.Mesh( geoTriangulo51, matPlano2 );
+			triangulo52 = new THREE.Mesh( geoTriangulo52, matPlano2 );
+			triangulo53 = new THREE.Mesh( geoTriangulo53, matPlano2 );
+			triangulo54 = new THREE.Mesh( geoTriangulo54, matPlano2 );
+			triangulo55 = new THREE.Mesh( geoTriangulo55, matPlano2 );
+			triangulo56 = new THREE.Mesh( geoTriangulo56, matPlano2 );
+			triangulo57 = new THREE.Mesh( geoTriangulo57, matPlano2 );
+			triangulo58 = new THREE.Mesh( geoTriangulo58, matPlano2 );
+			triangulo59 = new THREE.Mesh( geoTriangulo59, matPlano2 );
+			triangulo60 = new THREE.Mesh( geoTriangulo60, matPlano2 );
+			triangulo61 = new THREE.Mesh( geoTriangulo61, matPlano2 );
+			triangulo62 = new THREE.Mesh( geoTriangulo62, matPlano2 );
+			triangulo63 = new THREE.Mesh( geoTriangulo63, matPlano2 );
+			
+		  	//AGREGAR A LA ESCENA
+			
+			//CREACION DE LA BASE
+		  	scene.add( triangulo);
+			scene.add( triangulo1);
+			scene.add( triangulo2);
+			scene.add( triangulo3);
+			scene.add( triangulo4);
+			scene.add( triangulo5);
+			scene.add( triangulo6);
+			scene.add( triangulo7);
+			scene.add( triangulo8);
+			scene.add( triangulo9);
+			scene.add( triangulo10);
+			scene.add( triangulo11);
+			scene.add( triangulo12);
+			scene.add( triangulo13);
+			scene.add( triangulo14);
+			scene.add( triangulo15);
+			
+			//CREACION DE LA TAPA
+			scene.add( triangulo16);
+			scene.add( triangulo17);
+			scene.add( triangulo18);
+			scene.add( triangulo19);
+			scene.add( triangulo20);
+			scene.add( triangulo21);
+			scene.add( triangulo22);
+			scene.add( triangulo23);
+			scene.add( triangulo24);
+			scene.add( triangulo25);
+			scene.add( triangulo26);
+			scene.add( triangulo27);
+			scene.add( triangulo28);
+			scene.add( triangulo29);
+			scene.add( triangulo30);
+			scene.add( triangulo31);
+			
+			//CREACION DEL TRONCO
+			
+			scene.add( triangulo32);
+			scene.add( triangulo33);
+			scene.add( triangulo34);
+			scene.add( triangulo35);
+			scene.add( triangulo36);
+			scene.add( triangulo37);
+			scene.add( triangulo38);
+			scene.add( triangulo39);
+			scene.add( triangulo40);
+			scene.add( triangulo41);
+			scene.add( triangulo42);
+			scene.add( triangulo43);
+			scene.add( triangulo44);
+			scene.add( triangulo45);
+			scene.add( triangulo46);
+			scene.add( triangulo47);
+			scene.add( triangulo48);
+			scene.add( triangulo49);
+			scene.add( triangulo50);
+			scene.add( triangulo51);
+			scene.add( triangulo52);
+			scene.add( triangulo53);
+			scene.add( triangulo54);
+			scene.add( triangulo55);
+			scene.add( triangulo56);
+			scene.add( triangulo57);
+			scene.add( triangulo58);
+			scene.add( triangulo59);
+			scene.add( triangulo60);
+			scene.add( triangulo61);
+			scene.add( triangulo62);
+			scene.add( triangulo63);
+	
+			//CREACION DE LAS GRILLAS Y DE LAS GUIAS
+            scene.add( gridHelperXZ );
+		  	scene.add( arrowX );	
+		  	scene.add( arrowY );	
+		  	scene.add( arrowZ );	
+			
+			camera.position.y = 25;	 
+			camera.position.x = 25;	 
+			camera.position.z = 25;	 
+			
+		  	camera.lookAt( origin );
+			}
+    
+    function animate() {
+        render();
+		controls.update();
+        requestAnimationFrame( animate );
+    }
+    
+    function render(){
+        renderer.render( scene, camera );
+    }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Estatuilla</title>
+            <style>
+                html, body { margin: 0; padding: 0; overflow: hidden; }
+                #text {
+                    position: absolute;
+                    padding: 10px;
+                    width: 100%;
+                    text-align: center;
+                    color: #FFFFFF;
+                }
+            </style>
+        </head>
+        <body>
+            <div id="text">Estatuilla<br/>
+                        Tatiana Tolosa Santamaría<br/>
+                        Cod: 6000395<br/>
+                    </div>
+            </div>
+        <script src="js/three.js"></script>
+        <script src="js/OrbitControls.js"> </script>
+        <script>
+
+            
+        function init() {
+            var control;
+            var scene = new THREE.Scene();
+            var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+            scene.control= new THREE.OrbitControls(camera);
+
+            var size = 50;
+			var arrowSize = 1;
+			var divisions = size;
+			var origin = new THREE.Vector3( 0, 0, 0 );
+			var x = new THREE.Vector3( 1, 0, 0 );
+			var y = new THREE.Vector3( 0, 1, 0 );
+		  	var z = new THREE.Vector3( 0, 0, 1 );
+			var color1 = new THREE.Color( 0xFFFFFF );
+		  	var color2 = new THREE.Color( 0x333333 );
+		  	var colorR = new THREE.Color( 0xAA3333 );
+		  	var colorG = new THREE.Color( 0x33AA33 );
+		  	var colorB = new THREE.Color( 0x333366 );
+		  
+		  	//CREAR LAS GRILLAS PARA EL ESCENARIO
+		  	var axesHelper = new THREE.AxesHelper( size );
+		  	var gridHelperXY = new THREE.GridHelper( size, divisions, color1, color1);
+		  	var gridHelperXZ = new THREE.GridHelper( size, divisions, color2, color2 );
+		  	var gridHelperYZ = new THREE.GridHelper( size, divisions, color2, color2 );
+            
+            //ROTARLAS PARA QUE QUEDEN EN EL ESPACIO ADECUADO
+            gridHelperXY.rotateOnWorldAxis ( x, THREE.Math.degToRad(90) );
+            gridHelperXZ.rotateOnWorldAxis ( y, THREE.Math.degToRad(90) );
+            gridHelperYZ.rotateOnWorldAxis ( z, THREE.Math.degToRad(90) );
+            
+            //CREAR LAS FLECHAS QUE INDICAN LOS EJES DE COORDENADAS 3D
+            var arrowX = new THREE.ArrowHelper( x, origin, arrowSize, colorR );
+            var arrowY = new THREE.ArrowHelper( y, origin, arrowSize, colorG );
+            var arrowZ = new THREE.ArrowHelper( z, origin, arrowSize, colorB );
+
+
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        document.body.appendChild( renderer.domElement );
+
+
+        // Figuras
+        // Texturas
+        var texture1 = new THREE.TextureLoader().load( 'marmol.jpg' );
+        var material1 = new THREE.MeshBasicMaterial({ map: texture1 });
+
+        var texture2 = new THREE.TextureLoader().load( 'marble.jpg' );
+        var material2 = new THREE.MeshBasicMaterial({ map: texture2 });
+
+        var texture3 = new THREE.TextureLoader().load( 'gold.jpg' );
+        var material3 = new THREE.MeshBasicMaterial({ map: texture3 , side: THREE.DoubleSide });
+
+        // Geometria  
+        var cube = new THREE.BoxBufferGeometry( 10, 1, 10 );
+        var base = new THREE.Mesh( cube, material2 );
+        scene.add( base );
+
+        var cube1 = new THREE.BoxBufferGeometry( 3, 1, 5 );
+        var piernas = new THREE.Mesh( cube1, material1 );
+        scene.add( piernas );
+        piernas.position.set(0, 1, 0);
+
+        var geometry3 = new THREE.BoxBufferGeometry( 10, 3, 1 );
+        var wing = new THREE.Mesh( geometry3, material1 );
+        scene.add( wing );
+        wing.position.set(5, 6.5, -2);
+        var wing1 = new THREE.Mesh( geometry3, material1 );
+        scene.add( wing1 );
+        wing1.position.set(-5, 6.5, -2);
+
+        var geometry4 = new THREE.SphereGeometry( 0.8, 32, 32 );
+        var sphere = new THREE.Mesh( geometry4, material2 );
+        scene.add( sphere );
+        sphere.position.set(0.5, 6.7, -0.4);
+
+        var sphere1 = new THREE.Mesh( geometry4, material2 );
+        scene.add( sphere1 );
+        sphere1.position.set(-0.5, 6.7, -0.4);
+
+        var geometry5 = new THREE.SphereGeometry( 1.2, 32, 32 );
+        var head = new THREE.Mesh( geometry5, material1 );
+        scene.add( head );
+        head.position.set(0, 9.5, -2);
+
+        var geometry6 = new THREE.CylinderGeometry( 0.5, 0.5, 3, 5 );
+        var cylinder2 = new THREE.Mesh( geometry6, material1 );
+        scene.add( cylinder2 );
+        cylinder2.position.set(0, 8, -2);
+
+        var geometry = new THREE.RingBufferGeometry( 1, 2, 11,1);
+        var crown = new THREE.Mesh( geometry, material3 );
+        scene.add( crown );
+        crown.position.set(0, 10.5, -2);
+
+           
+            // Cuerpo
+           var pointLight1 = new THREE.PointLight( 0xffffff, .2, 0 );
+            pointLight1.position.set( 10, 10, -10);
+            scene.add( pointLight1 );
+			
+			var pointLight2 = new THREE.PointLight( 0xffffff, .5, 100 );
+            pointLight2.position.set( 20, 20, 20 );
+            scene.add( pointLight2 );
+            
+            var curve2D = [];
+                curve2D[0] = new THREE.Vector2( 1, 0 );
+                curve2D[1] = new THREE.Vector2( 1.25, 2.5 );
+                curve2D[2] = new THREE.Vector2( 2.5, 5 );
+                curve2D[3] = new THREE.Vector2( 0, 5 );
+				
+			var shape = new THREE.Shape();
+			shape.moveTo(0,0);
+			shape.splineThru(curve2D);
+
+            var material3 = new THREE.LineBasicMaterial( { color : 0xffffff } );
+            var resolution = 50;
+            var points = shape.getPoints( resolution );
+            var geometry3 = new THREE.BufferGeometry().setFromPoints( points );
+            
+            // Agregar Cuerpo
+            var curveObject = new THREE.Line( geometry3, material3 );
+			
+			var geometry3 = new THREE.LatheGeometry( points, 20 );
+
+            var texture2 = new THREE.TextureLoader().load( 'marble.jpg' );
+            var material2 = new THREE.MeshBasicMaterial({ map: texture2 });
+           
+			var lathe = new THREE.Mesh( geometry3, material2 );
+            var lathe2 = new THREE.Mesh( geometry3, material2 );
+			scene.add( lathe );
+            scene.add( lathe2 );
+			scene.add( curveObject );   
+
+            curveObject.position.set(0, 2, -2);
+            lathe2.position.set(0, 2, -2);
+            lathe.position.set(0, 5.5, -2);
+
+            lathe.rotation.set(0, 0, -3.14);
+        
+            scene.add( gridHelperXZ );
+		  	scene.add( arrowX );	
+		  	scene.add( arrowY );	
+		  	scene.add( arrowZ );	
+			
+
+        camera.position.x = 0;
+	    camera.position.y = 7;	 
+		camera.position.z =  20;
+
+        function render() {
+            renderer.render(scene, camera);
+            requestAnimationFrame(render);
+        }
+
+
+        render();
+            
+        }
+        
+    
+        window.onload = init;
+                
+        </script>
+    </body>
+    </html>
